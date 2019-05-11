@@ -15,6 +15,13 @@ function eventListeners() {
   document.querySelector('.navBtn').addEventListener('click', function () {
     ui.showNav();
   })
+  // hide navbar on click
+  const navLinks = document.querySelectorAll(".nav__single-link");
+  navLinks.forEach(link => {
+    link.addEventListener("click", () => {
+      ui.hideNav();
+    });
+  });
   // control the video
   document.querySelector('.video__switch').addEventListener('click', function () {
     ui.videoControls()
@@ -76,7 +83,10 @@ UI.prototype.hidePreloader = function () {
 UI.prototype.showNav = function () {
   document.querySelector('.nav').classList.toggle('nav--show')
 }
-// play/pause the vidoe
+UI.prototype.hideNav = function () {
+  document.querySelector(".nav").classList.remove("nav--show");
+};
+// play/pause the video
 UI.prototype.videoControls = function () {
   let btn = document.querySelector('.video__switch-btn');
   if (!btn.classList.contains('btnSlide')) {
